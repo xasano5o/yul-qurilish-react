@@ -27,9 +27,11 @@ export function AddStudent() {
     company: '',
     position: '',
     birthday: '',
-    yonalish:'',
-    soat:'',
+    yonalish: { name: '' }, // yonalish obyektini qo'shamiz
+    soat: {soat:''},
   });
+  
+  console.log(inputValue,'inputValue');
 
   const addData = async () => {
     try {
@@ -60,7 +62,7 @@ export function AddStudent() {
         navigate('/login')
       }
       else if (error.status == 400) {
-        toast.warn(`Forma tuliq to'ldiring 🧐`);
+        toast.warn(`Forma tuliq to'ldiring 🧐 Yokida Server Tomonidan suralgan ma'lumot turi bermayabgansiz`);
       }
 
 
@@ -310,7 +312,7 @@ export function AddStudent() {
                 Yunalish
               </label>
               <div className="mt-2">
-                <select  onChange={(e) =>setInputValue({...inputValue,yonalish:e.target.value})}
+              <select onChange={(e) => setInputValue({ ...inputValue, yonalish: { name: e.target.value } })}
                   className=" block px-[10px] w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   name="" id="">
                   <option value="">Hech biri</option>
@@ -328,13 +330,14 @@ export function AddStudent() {
                 Soat
               </label>
               <div className="mt-2">
-                <select  onChange={(e) =>setInputValue({...inputValue,soat:e.target.value})}
+                <select  
+                onChange={(e) => setInputValue({ ...inputValue, soat: { soat: e.target.value } })}
                   className=" block px-[10px] w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   name="" id="">
                   <option value="">Hech biri</option>
                   {isLoading ? 'Yuklanmoqda' :
                     datas?.map((value) => {
-                      return (<option value={value.id}>{value?.soat}</option>)
+                      return (<option value={value?.id}>{value?.soat}</option>)
                     })}
                 </select>
               </div>

@@ -8,7 +8,7 @@ const Navbbar = () => {
         <div>
             <nav class=" bg-blue-500 border-gray-200 dark:bg-gray-900">
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                    <img className=' bordder w-[70px]  h-[70px] cursor-pointer' src={Logo} alt="" />
+                    <img className=' bordder w-[100px]  h-[100px] cursor-pointer' src={Logo} alt="" />
                     <div className=' font-semibold text-center gap-[20px]'>
                     <h3>Наманган йул курилищ хужалиги ходимларни</h3>
                     <h4>Малакацини ощирищ укув Маркази </h4>

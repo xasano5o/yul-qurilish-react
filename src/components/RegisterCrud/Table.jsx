@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaEdit } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
@@ -11,14 +11,26 @@ import EditStudent from "./EditStudent"
 function Table() {
 
   const { data, isLoading } = useGetCategoryQuery()
-  const [search, setSearch] = useState()
 
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    if (!data) return;
+    // Ma'lumotlarni qidirish
+    const filteredData = data.filter(user =>
+      user?.first_name?.toLowerCase()?.includes(searchTerm?.toLowerCase()) ||
+      user?.last_name?.toLowerCase()?.includes(searchTerm?.toLowerCase()) ||
+      user?.phone?.toLowerCase()?.includes(searchTerm?.toLowerCase())
+    );
+    setFilteredData(filteredData);
+  }, [searchTerm, data]);
   return (
     <div>
       <div class="  w-[100wv] overflow-auto h-[80vh] p-4 contet">
         <div className='flex justify-between  items-center'>
           <div>
-            <input onChange={(e) => setSearch(e.target.value)} placeholder='Qidirish...' type="text" class="w-[300px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+            <input onChange={(e) => setSearchTerm(e.target.value)} placeholder='Qidirish...' type="text" class="w-[300px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
           </div>
           {/* <button className='bg-blue-500 text-white'>O'quvchi qushish</button> */}
           <AddStudent />
@@ -45,8 +57,8 @@ function Table() {
             </thead>
             <tbody className='p-[50px] max-w-full  overflow-x-auto overflow-y-auto'>
               {
-                isLoading ? 'Malumot Yuklanmoqda' : data.length > 0 ? 
-                    data?.map((value) => {
+                isLoading ? 'Malumot Yuklanmoqda' :
+                filteredData?.map((value) => {
                     return (
                       <tr class="border-b dark:border-gray-700 cursor-pointer">
                         <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -75,7 +87,7 @@ function Table() {
                         </td>
                       </tr>
                     );
-                  }): <h1 className='text-red-600'>Ma'lumot Yoq ma'lumot qo'shing;</h1>}
+                  })}
             </tbody>
           </table>
         </div>
