@@ -37,9 +37,9 @@ const VeiwCertifcateUser = () => {
         </div>
         <div>
           <div class="text-xl font-medium  text-center text-black">
-            <b class="text-gray-500">O'bekiston Resbublikasi</b> <br />
-            <b class="text-gray-500">Trasnport vazirligi</b><br />
-            <b class="text-gray-500">Artomobil yo'lliari qo'mitasi</b><br />
+            <b class="text-gray-500">O‘zbekiston Respublikasi </b> <br />
+            <b class="text-gray-500">Transport Vazirligi</b><br />
+            <b class="text-gray-500">Avtomobil yo‘llari qo‘mitasi</b><br />
             <b class="text-gray-500">Namangan yo'l xo'jaligi xodimlari malakasi oshirish o'quv markazi</b> <br />
             <b class="text-gray-500">Malaka oshirganlik haqida</b> <br />
             <h1 className='font-zad'>SERTIFIKAT</h1>
@@ -48,8 +48,8 @@ const VeiwCertifcateUser = () => {
             <b class="text-gray-500">Mazkur seritifkat egasi</b>
             <p className='text-gray-500 under-lines uppercase'>{object?.last_name || ''} {object?.first_name || ''} </p>
             <span className='text-sm text-gray-500'>(Tinglovchining F.I.O)</span> <br />
-            <p class="text-gray-500">  O'qish davri <span className='line-bottom'>{formattedCreatedAt} </span> dan</p>
-            <p class="text-gray-500">  <span className='line-bottom'>  {formattedUpdate}</span> gacha</p>
+            <p class="text-gray-500">  O'qish davri <span className='line-bottom'>{formattedCreatedAt.slice(0,4)} </span> dan</p>
+            <p class="text-gray-500">  <span className='line-bottom'>  {formattedUpdate.slice(0,4)}</span> gacha</p>
             <b class="text-gray-500">Namangan yo'l xo'jaligi xodimlari malakasini oshirish o'quv matkazi</b> <br />
             <span className='text-sm text-gray-500'>(Ta'lim muassasi (tashkilot nomi))</span> <br />
             <p className='text-gray-500 under-lines uppercase'>Ta'lim </p>

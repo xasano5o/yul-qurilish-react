@@ -4,6 +4,7 @@ import Navbbar from '../navbar'
 import AboutCom from '../about'
 import AboutText from '../about/aboutText'
 import Footer from '../footer'
+import Location from '../location'
 
 function HomeClient() {
   return (
@@ -12,6 +13,7 @@ function HomeClient() {
         <CaruselCom/>
         <AboutCom/>
         <AboutText/>
+        <Location/>
         <Footer/>
     </div>
   )
